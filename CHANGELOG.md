@@ -1,3 +1,7 @@
+## 1.21 (Sep 6, 2023)
+* Add less support
+* Completion item add detail for cache file name
+* Fixed exclude paths not working
 ### 1.20 (Dec 19, 2020)
 * Settings to allow users to specify which language modes will have autocompletion;
 * Fix interpretation of classes defined inside media queries.

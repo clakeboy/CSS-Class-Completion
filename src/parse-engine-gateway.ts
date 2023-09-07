@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import VError = require("verror");
 import * as vscode from "vscode";
-
+import * as path from "path";
 import CssClassDefinition from "./common/css-class-definition";
 import IParseEngine from "./parse-engines/common/parse-engine";
 import ISimpleTextDocument from "./parse-engines/common/simple-text-document";
@@ -25,6 +25,7 @@ async function createSimpleTextDocument(uri: vscode.Uri): Promise<ISimpleTextDoc
         getText(): string {
             return text;
         },
+        baseName: path.basename(uri.path)
     };
     return simpleDocument;
 }

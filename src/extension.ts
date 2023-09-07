@@ -13,16 +13,16 @@ import Notifier from "./notifier";
 import ParseEngineGateway from "./parse-engine-gateway";
 
 enum Command {
-    Cache = "html-css-class-completion.cache",
+    Cache = "css-class-completion.cache",
 }
 
 enum Configuration {
-    IncludeGlobPattern = "html-css-class-completion.includeGlobPattern",
-    ExcludeGlobPattern = "html-css-class-completion.excludeGlobPattern",
-    EnableEmmetSupport = "html-css-class-completion.enableEmmetSupport",
-    HTMLLanguages = "html-css-class-completion.HTMLLanguages",
-    CSSLanguages = "html-css-class-completion.CSSLanguages",
-    JavaScriptLanguages = "html-css-class-completion.JavaScriptLanguages",
+    IncludeGlobPattern = "css-class-completion.includeGlobPattern",
+    ExcludeGlobPattern = "css-class-completion.excludeGlobPattern",
+    EnableEmmetSupport = "css-class-completion.enableEmmetSupport",
+    HTMLLanguages = "css-class-completion.HTMLLanguages",
+    CSSLanguages = "css-class-completion.CSSLanguages",
+    JavaScriptLanguages = "css-class-completion.JavaScriptLanguages",
 }
 
 const notifier: Notifier = new Notifier(Command.Cache);
@@ -71,7 +71,7 @@ async function cache(): Promise<void> {
                 const progress = ((filesParsed / uris.length) * 100).toFixed(2);
                 notifier.notify("eye", "Looking for CSS classes in the workspace... (" + progress + "%)", false);
             }, { concurrency: 30 });
-        } catch (err) {
+        } catch (err:any) {
             notifier.notify("alert", "Failed to cache the CSS classes in the workspace (click for another attempt)");
             throw new VError(err, "Failed to parse the documents");
         }
@@ -86,7 +86,7 @@ async function cache(): Promise<void> {
         console.log(failedLogs);
 
         notifier.notify("zap", "CSS classes cached (click to cache again)");
-    } catch (err) {
+    } catch (err:any) {
         notifier.notify("alert", "Failed to cache the CSS classes in the workspace (click for another attempt)");
         throw new VError(err,
             "Failed to cache the class definitions during the iterations over the documents that were found");
@@ -115,12 +115,12 @@ const registerCompletionProvider = (
 
         // Creates a collection of CompletionItem based on the classes already cached
         const completionItems = uniqueDefinitions.map((definition) => {
-            const completionItem = new CompletionItem(definition.className, CompletionItemKind.Variable);
+            const completionItem = new CompletionItem(definition.className, CompletionItemKind.Class);
             const completionClassName = `${classPrefix}${definition.className}`;
 
             completionItem.filterText = completionClassName;
             completionItem.insertText = completionClassName;
-
+            completionItem.detail = definition.baseName;
             return completionItem;
         });
 
@@ -216,7 +216,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
                 unregisterProviders(javaScriptDisposables);
                 registerJavaScriptProviders(javaScriptDisposables);
             }
-        } catch (err) {
+        } catch (err:any) {
             const newErr = new VError(err, "Failed to automatically reload the extension after the configuration change");
             console.error(newErr);
             window.showErrorMessage(newErr.message);
@@ -232,7 +232,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
         caching = true;
         try {
             await cache();
-        } catch (err) {
+        } catch (err:any) {
             const newErr = new VError(err, "Failed to cache the CSS classes in the workspace");
             console.error(newErr);
             window.showErrorMessage(newErr.message);
@@ -252,7 +252,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     caching = true;
     try {
         await cache();
-    } catch (err) {
+    } catch (err:any) {
         const newErr = new VError(err, "Failed to cache the CSS classes in the workspace for the first time");
         console.error(newErr);
         window.showErrorMessage(newErr.message);

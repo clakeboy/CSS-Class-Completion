@@ -1,4 +1,9 @@
-# IntelliSense for CSS class names in HTML
+# IntelliSense for CSS class names in HTML New by Clake
+
+This project fork by Zignd https://github.com/Zignd/HTML-CSS-Class-Completion
+
+Because the original project will not be updated after 2020, now this new project has fixed some original bugs and added support for less files
+
 
 A Visual Studio Code extension that provides CSS class name completion for the HTML `class` attribute based on the definitions found in your workspace or external files referenced through the `link` element.
 
@@ -29,9 +34,9 @@ A Visual Studio Code extension that provides CSS class name completion for the H
 ## Extended Support for Other Language Modes
 
 It's possible to specify which language modes will have autocompletion. There are three settings for this feature:
-* `html-css-class-completion.HTMLLanguages` is for language modes based on HTML, the ones you have the `class` attribute;
-* `html-css-class-completion.CSSLanguages` currently is for languages like CSS, Sass and Scss, this one is not very useful right now because it only supports the `@apply` function;
-* `html-css-class-completion.JavaScriptLanguages` is for JavaScript based languages supporting the `class` or `className` attribute.
+* `css-class-completion.HTMLLanguages` is for language modes based on HTML, the ones you have the `class` attribute;
+* `css-class-completion.CSSLanguages` currently is for languages like CSS, Sass and Scss, this one is not very useful right now because it only supports the `@apply` function;
+* `css-class-completion.JavaScriptLanguages` is for JavaScript based languages supporting the `class` or `className` attribute.
 
 The language modes listed in the previous section are already defined as default values in these settings, and you can add new ones or remove the already defined ones as necessary.
 
@@ -41,13 +46,14 @@ The language modes listed in the previous section are already defined as default
 * Emmet abbreviations support triggered by typing a "." (comes disabled by default, check the User Settings topic for more information).
 
 ## Contributions
-You can request new features and contribute to the extension development on its [repository on GitHub](https://github.com/Zignd/HTML-CSS-Class-Completion/issues). Look for an issue you're interested in working on, comment on it to let me know you're working on it and submit your pull request! :D
+You can request new features and contribute to the extension development on its [repository on GitHub](https://github.com/clakeboy/CSS-Class-Completion/issues). Look for an issue you're interested in working on, comment on it to let me know you're working on it and submit your pull request! :D
 
-## What's new in version 1.20 (Dec 19, 2020)
-* Settings to allow users to specify which language modes will have autocompletion;
-* Fix interpretation of classes defined inside media queries.
+## What's new in version 1.21 (Sep 6, 2023)
+* Add less support
+* Completion item add detail for cache file name
+* Fixed exclude paths not working
 
-Check out the [changelog](https://github.com/zignd/HTML-CSS-Class-Completion/blob/master/CHANGELOG.md) for the current and previous updates.
+Check out the [changelog](https://github.com/clakeboy/CSS-Class-Completion/blob/master/CHANGELOG.md) for the current and previous updates.
 
 ## Usage
 If there are HTML or JS files on your workspace, the extension automatically starts and looks for CSS class definitions. In case new CSS classes are defined, or new CSS files are added to the workspace, and you also want auto-completion for them, just hit the lightning icon on the status bar. Also, you can execute the command by pressing `Ctrl+Shift+P`(`Cmd+Shift+P` for Mac) and then typing "Cache CSS class definitions."
@@ -59,8 +65,8 @@ The extension supports a few user settings, changes to these settings will be au
 
 You can change the folders and files the extension will consider or exclude during the caching process by setting the following user settings:
 
-* `"html-css-class-completion.includeGlobPattern"` (default: `"**/*.{css,html}"`)
-* `"html-css-class-completion.excludeGlobPattern"` (default: `""`)
+* `"css-class-completion.includeGlobPattern"` (default: `"**/*.{css,html}"`)
+* `"css-class-completion.excludeGlobPattern"` (default: `""`)
 
 #### Emmet
 
@@ -68,7 +74,7 @@ Emmet support comes disabled by default, the reason behind this choice is becaus
 
 Currently it supports the following languages (those are [language identifier](https://code.visualstudio.com/docs/languages/identifiers#_known-language-identifiers)): "html", "razor", "php", "blade", "vue", "twig", "markdown", "erb", "handlebars", "ejs", "typescriptreact", "javascript", "javascriptreact".
 
-* `"html-css-class-completion.enableEmmetSupport"` (default: `false`)
+* `"css-class-completion.enableEmmetSupport"` (default: `false`)
 
 ![](https://i.imgur.com/O7NjEUW.gif)
 ![](https://i.imgur.com/uyiXqMb.gif)

@@ -41,7 +41,7 @@ class HtmlParseEngine implements IParseEngine {
             },
             ontext: (text: string) => {
                 if (tag === "style") {
-                    definitions.push(...CssClassExtractor.extract(css.parse(text)));
+                    definitions.push(...CssClassExtractor.extract(css.parse(text),textDocument.baseName));
                 }
             },
         });
@@ -51,7 +51,7 @@ class HtmlParseEngine implements IParseEngine {
 
         await Bluebird.map(urls, async (url) => {
             const content = await request.get(url);
-            definitions.push(...CssClassExtractor.extract(css.parse(content)));
+            definitions.push(...CssClassExtractor.extract(css.parse(content),textDocument.baseName));
         }, { concurrency: 10 });
 
         return definitions;

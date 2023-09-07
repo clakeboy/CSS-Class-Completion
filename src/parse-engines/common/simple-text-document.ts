@@ -4,6 +4,7 @@
 interface ISimpleTextDocument {
     languageId: string;
     getText(): string;
+    baseName: string;
 }
 
 export default ISimpleTextDocument;

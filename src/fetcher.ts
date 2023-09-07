@@ -9,12 +9,12 @@ class Fetcher {
         if (!vscode.workspace.name) {
             return [];
         }
-
+        
         const configuration = vscode.workspace.getConfiguration();
-        const includeGlobPattern = configuration.get("html-css-class-completion.includeGlobPattern");
-        const excludeGlobPattern = configuration.get("html-css-class-completion.excludeGlobPattern");
+        const includeGlobPattern = configuration.get("css-class-completion.includeGlobPattern");
+        const excludeGlobPattern = configuration.get("css-class-completion.excludeGlobPattern");
 
-        return await vscode.workspace.findFiles(`${includeGlobPattern}`, `${excludeGlobPattern}`);
+        return await vscode.workspace.findFiles(includeGlobPattern as string, excludeGlobPattern as string);
     }
 }
 
