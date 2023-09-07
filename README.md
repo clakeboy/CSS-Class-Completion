@@ -7,7 +7,7 @@ Because the original project will not be updated after 2020, now this new projec
 
 A Visual Studio Code extension that provides CSS class name completion for the HTML `class` attribute based on the definitions found in your workspace or external files referenced through the `link` element.
 
-![](https://i.imgur.com/5crMfTj.gif)
+![image](/images/css-completion.gif)
 
 ## Features
 * Gives you autocompletion for CSS class definitions that can be found in your workspace (defined in CSS files or the in the file types listed in the Supported Language Modes section);
